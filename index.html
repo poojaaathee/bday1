@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Happy Birthday My Love! 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #ff1654, #ff6b9d, #ffa6c1, #ffb3d9);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(255, 22, 84, 0.4);
+            margin-bottom: 10px;
+            animation: heartPulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
+            75% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message p {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-confetti {
+            background: linear-gradient(135deg, #ff1654 0%, #ff6b9d 100%);
+        }
+
+        .btn-confetti:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 22, 84, 0.5);
+        }
+
+        .btn-music {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffb3d9 100%);
+        }
+
+        .btn-music:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+        }
+
+        .btn-gallery {
+            background: linear-gradient(135deg, #ff1654 0%, #ff6b9d 100%);
+        }
+
+        .btn-gallery:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 22, 84, 0.5);
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            pointer-events: none;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 30px;
+            animation: slideIn 0.8s ease-out;
+            z-index: 5;
+        }
+
+        .gallery.show {
+            display: block;
+        }
+
+        .gallery h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .gallery-placeholder {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            width: 30px;
+            height: 40px;
+            border-radius: 50% 50% 50% 0;
+            animation: float 6s infinite ease-in;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                bottom: -40px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+
+        .close-gallery {
+            background: #ff6b6b;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .close-gallery:hover {
+            background: #ff5252;
+        }
+
+        .heart {
+            display: inline-block;
+            color: #ff6b9d;
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .stars {
+            font-size: 2rem;
+            display: inline-block;
+            animation: twinkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 30px;
+            animation: slideIn 0.8s ease-out;
+            z-index: 5;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .slideshow-container.show {
+            display: block;
+        }
+
+        .slideshow-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            background: linear-gradient(135deg, #ff1654 0%, #ff6b9d 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 900px;
+            padding-top: 0;
+            box-shadow: 0 10px 40px rgba(255, 22, 84, 0.3);
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 3rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-counter {
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .slideshow-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .slideshow-controls button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-prev, .btn-next {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ffb3d9 100%);
+        }
+
+        .btn-auto {
+            background: linear-gradient(135deg, #ff1654 0%, #ff6b9d 100%);
+        }
+
+        .close-slideshow {
+            background: #ff6b6b;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .close-slideshow:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    
+    <div class="container">
+        <h1>💕 Happy Birthday My Love! 💕</h1>
+        <p class="subtitle"><span class="heart">❤️</span> You are my everything <span class="heart">❤️</span></p>
+
+        <div class="message">
+            <p>✨ On this special day, I want to celebrate YOU ✨</p>
+            <p>Thank you for all the love and beautiful moments we share together.</p>
+            <p><span class="stars">💫</span> You make every day a Valentine's Day! <span class="stars">💫</span></p>
+            <p style="margin-top: 20px; font-style: italic; line-height: 1.8;">
+                "No matter how much time I spend with you, I can never ever get enough of you. 
+                <br>Your love is forever mine and I need you every day."
+            </p>
+            <p style="margin-top: 20px; font-weight: bold; color: #ff1654;">
+                Pooja... I don't know if there will be a second life. 
+                <br>So will you marry me in this life?? - aathee💕
+            </p>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-confetti" onclick="createConfetti()">🎉 Celebrate!</button>
+            <button class="btn-music" onclick="toggleSlideshow()">🎬 Slideshow</button>
+            <button class="btn-gallery" onclick="createBalloons()">🎈 Release Balloons!</button>
+        </div>
+
+        <div class="slideshow-container" id="slideshow">
+            <h2>Your Special Moments</h2>
+            <div class="slideshow-wrapper" id="slideshow-wrapper">
+                <!-- Slides will be loaded dynamically -->
+            </div>
+            <div class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">0</span></div>
+            <div class="slideshow-controls">
+                <button class="btn-prev" onclick="previousSlide()">⬅️ Previous</button>
+                <button class="btn-auto" onclick="toggleAutoSlide()">▶️ Auto Play</button>
+                <button class="btn-next" onclick="nextSlide()">Next ➡️</button>
+            </div>
+            <button class="close-slideshow" onclick="toggleSlideshow()">Close Slideshow</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Confetti Function
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe', '#ffd89b', '#19547b'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        // Confetti Animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Slideshow Variables
+        let currentSlide = 0;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        // Get all slides
+        function getSlides() {
+            return document.querySelectorAll('.slide');
+        }
+
+        // Show specific slide
+        function showSlide(n) {
+            const slides = getSlides();
+            
+            if (n >= slides.length) {
+                currentSlide = 0;
+            } else if (n < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = n;
+            }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        // Next slide
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Previous slide
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Toggle auto play
+        function toggleAutoSlide() {
+            const btn = event.target;
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                btn.textContent = '▶️ Auto Play';
+            } else {
+                isAutoPlaying = true;
+                btn.textContent = '⏸️ Stop';
+                autoPlayInterval = setInterval(() => {
+                    nextSlide();
+                }, 2000);
+            }
+        }
+
+        // Slideshow Toggle
+        function toggleSlideshow() {
+            const slideshow = document.getElementById('slideshow');
+            slideshow.classList.toggle('show');
+            
+            // Stop auto play if closing
+            if (!slideshow.classList.contains('show') && isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                document.querySelector('.btn-auto').textContent = '▶️ Auto Play';
+            }
+        }
+
+        // Initialize slideshow
+        document.getElementById('total-slides').textContent = getSlides().length;
+
+        // Load images into slideshow
+        function loadSlideshowImages() {
+            const imageFiles = [
+                'ChatGPT Image Nov 26, 2025, 09_35_39 PM.png',
+                'ChatGPT Image Nov 26, 2025, 09_46_34 PM.png',
+                'ChatGPT Image Nov 26, 2025, 09_48_12 PM.png',
+                'ChatGPT Image Nov 26, 2025, 09_59_06 PM.png',
+                'ChatGPT Image Nov 26, 2025, 09_59_14 PM.png',
+                'ChatGPT Image Nov 26, 2025, 09_59_22 PM.png',
+                'IMG-20251125-WA0015.jpg',
+                'WhatsApp Image 2025-11-26 at 10.00.23 PM.jpeg'
+            ];
+
+            const slideshowWrapper = document.getElementById('slideshow-wrapper');
+            slideshowWrapper.innerHTML = ''; // Clear existing slides
+
+            imageFiles.forEach((file, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                if (index === 0) {
+                    slide.classList.add('active');
+                }
+
+                const img = document.createElement('img');
+                img.src = file;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.onerror = function() {
+                    // If image fails to load, show a placeholder
+                    slide.textContent = '📸';
+                    slide.style.fontSize = '3rem';
+                };
+
+                slide.appendChild(img);
+                slideshowWrapper.appendChild(slide);
+            });
+
+            // Update total slides
+            document.getElementById('total-slides').textContent = imageFiles.length;
+            currentSlide = 0;
+        }
+
+        // Create Balloons
+        function createBalloons() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181', '#AA96DA'];
+            
+            for (let i = 0; i < 8; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * window.innerWidth + 'px';
+                balloon.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                balloon.style.animationDelay = (i * 0.2) + 's';
+                document.body.appendChild(balloon);
+
+                setTimeout(() => balloon.remove(), 8000);
+            }
+        }
+
+        // Auto-create balloons on page load
+        window.addEventListener('load', () => {
+            loadSlideshowImages();
+            createBalloons();
+        });
+
+        // Click anywhere to create confetti (optional fun feature)
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                // Create small confetti burst at click location
+                const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c'];
+                for (let i = 0; i < 5; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = e.clientX + 'px';
+                    confetti.style.top = e.clientY + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animation = `fall ${Math.random() * 2 + 1.5}s linear forwards`;
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
