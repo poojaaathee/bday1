@@ -501,6 +501,7 @@
 
         // Load images into slideshow
         function loadSlideshowImages() {
+            const baseURL = "https://raw.githubusercontent.com/poojaaathee/bday1/main/";
             const imageFiles = [
                 'ChatGPT Image Nov 26, 2025, 09_35_39 PM.png',
                 'ChatGPT Image Nov 26, 2025, 09_46_34 PM.png',
@@ -523,7 +524,7 @@
                 }
 
                 const img = document.createElement('img');
-                img.src = file;
+                img.src = baseURL + file;
                 img.style.width = '100%';
                 img.style.height = '100%';
                 img.style.objectFit = 'cover';
